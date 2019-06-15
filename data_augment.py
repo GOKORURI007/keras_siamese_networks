@@ -9,8 +9,8 @@ dest_path = r'dataset_aug'
 
 # width, height and channel
 # If you want to process a RGB image, remember to change the channel to 3
-w = 299
-h = 299
+w = 105
+h = 105
 c = 1
 
 category_num = 394			# The number of image category
@@ -20,10 +20,10 @@ generate_num = 10			# The number of new images you want to generate per image
 
 def read_img(path):
 	'''
-	Read all image in the directory
-	:param path: Folder path
+	Read all image in the directory.
+	:param path: Folder path.
 	:return:A numpy array conversion from images.
-			For RGB image, the shape is (number of image, width, height, 3)
+			For RGB image, the shape is (number of image, width, height, 3).
 	'''
 	imgs = []
 	for filename in os.listdir(path):
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 								   height_shift_range=0.1,
 								   shear_range=0.1,
 								   zoom_range=0.2,
-								   fill_mode='wrap')  # remember to change fill_mode as needed
+								   fill_mode='nearest')  # remember to change fill_mode as needed
 
 	for j in range(category_num):
 		data_path = os.path.join(sourse_path, str(j))
