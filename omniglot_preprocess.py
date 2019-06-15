@@ -1,4 +1,5 @@
-import os, shutil
+import os
+import shutil
 
 dataset_path_tr = r'Omniglot Dataset/images_background'
 dataset_path_te = r'Omniglot Dataset/images_evaluation'
