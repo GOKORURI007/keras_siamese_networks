@@ -30,8 +30,8 @@ def read_img(path):
 		print(filename)
 		file_path = os.path.join(path, filename)
 		img = io.imread(file_path)
-		x = transform.resize(img, (w, h, c), mode='constant')
-		imgs.append(x)
+		# x = transform.resize(img, (w, h, c), mode='constant')
+		imgs.append(img)  # If you need resize the picture, change it to "imgs.append(x)" .
 	return np.asarray(imgs, np.float32)
 
 if __name__ == '__main__':
