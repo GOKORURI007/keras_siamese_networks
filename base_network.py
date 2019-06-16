@@ -18,6 +18,7 @@ def Conv2d_BN(x, nb_filter, kernel_size, padding='same', strides=(1, 1), name=No
 
 
 def AlexNet(w, h, c):
+	'''AlexNet with out Dense layers'''
 	input = Input(shape=(w, h, c))
 	x = Conv2d_BN(input, 96, (11, 11), strides=(4, 4), padding='valid')
 	x = MaxPooling2D(pool_size=(3, 3), strides=(2, 2), padding='valid')(x)
