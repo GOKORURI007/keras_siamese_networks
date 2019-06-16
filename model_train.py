@@ -4,8 +4,8 @@ from keras.models import Model
 from keras import backend as K
 from keras.optimizers import RMSprop
 from keras.layers import Input
-from keras.layers import  Lambda
-from keras.applications.inception_v3 import InceptionV3
+from keras.layers import Lambda
+from base_network import AlexNet
 from keras.callbacks import ReduceLROnPlateau, ModelCheckpoint
 
 
@@ -46,8 +46,8 @@ def accuracy(y_true, y_pred):
 
 
 def create_base_network():
-	'''Puts your base network here'''
-	base_model = InceptionV3(input_shape=(105,105,3),include_top=False, weights='imagenet', pooling='avg')
+	'''Puts your base network in base_network.py'''
+	base_model = AlexNet(105, 105, 3)
 	return base_model
 
 
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 	# train
 	# 返回函数设置，学习率调整
 	rms = RMSprop(lr=0.0001)
-	reduce_lr = ReduceLROnPlateau(monitor='loss', patience=10, mode='auto')
+	reduce_lr = ReduceLROnPlateau(monitor='loss', patience=5, mode='auto')
 	filepath = 'InceptionV3_BestWeight.h5'
 	checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 	callback_list = [checkpoint, reduce_lr]
@@ -80,7 +80,7 @@ if __name__ == '__main__':
 	model.fit([train_data1, train_data2],
 			  train_lab,
 			  callbacks=callback_list,
-			  batch_size=64, # if you get a memory warning, reduce it.
+			  batch_size=64,  # if you get a memory warning, reduce it.
 			  epochs=50)
 	model.save_weights('InceptionV3_Weight.h5')
 
