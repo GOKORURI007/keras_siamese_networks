@@ -64,12 +64,11 @@ if __name__ == '__main__':
 					  output_shape=eucl_dist_output_shape)([processed_a, processed_b])
 	model = Model([input_a, input_b], distance)
 
-	# model.load_weights('InceptionV3_Weight.h5')
 	# train
 	# 返回函数设置，学习率调整
 	rms = RMSprop(lr=0.0001)
 	reduce_lr = ReduceLROnPlateau(monitor='loss', patience=5, mode='auto')
-	filepath = 'InceptionV3_BestWeight.h5'
+	filepath = 'AlexNet_BestWeight.h5'
 	checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 	callback_list = [checkpoint, reduce_lr]
 
@@ -81,7 +80,7 @@ if __name__ == '__main__':
 						epochs=50,
 						verbose=1,
 						workers=0)
-	model.save_weights('InceptionV3_Weight.h5')
+	model.save_weights('AlexNet_Weight.h5')
 
 	# compute final accuracy on training and test sets
 	train_data1, train_data2, train_lab = joblib.load('dataset_te.pickle')
