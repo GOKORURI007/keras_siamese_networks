@@ -14,6 +14,7 @@ The Omniglot dataset consists in 50 different alphabets, 30 used in a background
 There are two main files to run the code in this repo: 
 - *model_train.py* that allows you to train a siamese network with a specific dataset. 
 - *model_train_gen.py* that allows you to train a siamese network with a customization generator on a bigger dataset. 
+- *base_network.py* bulid your base_network here.
 
 Regarding the rest of the code:
 - omniglot_preprocess is a script used to place the image in omniglot dataset to a specific directory. 
